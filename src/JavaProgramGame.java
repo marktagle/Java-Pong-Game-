@@ -4,18 +4,18 @@ import java.awt.event.*;
 
 public class JavaProgramGame extends JPanel implements KeyListener {
 
-        //Variables for the game objects.
+    //Variables for the game objects.
     int pongX = 10, pongY = 100, lineX = 5, lineY = 50, line2X = 380, line2Y = 50;
 
-        //for ball speed
+    //for ball speed
     int right = 5;
     int left = - 5;
     int up = 5;
     int down = - 5;
     int width, height;
 
-    int scorePlayer1 = 0, scorePlayer2 = 0, life1 = 1, life2 = 2;
-    int GameOver = 1;
+    int scorePlayer1 = 0, scorePlayer2 = 0, life1 = 6, life2 = 6;
+    int GameOver = 6;
 
     JLabel Start = new JLabel("<HTML><FONT COLOR=GREEN>Press Start</FONT></HTML>"), exit = new JLabel("<HTML><FONT COLOR=RED>Exit </FONT></HTML>"),
             HTP = new JLabel("<HTML><FONT COLOR=ORANGE>How to play</FONT></HTML>");
@@ -41,11 +41,11 @@ public class JavaProgramGame extends JPanel implements KeyListener {
                         update();
                         rendered();
                         Thread.sleep(35);
-                        }
-                    catch(Exception ex) {}
                     }
+                    catch(Exception ex) {}
                 }
-            }); td.start();
+            }
+        }); td.start();
     }
 
     public void keyTyped(KeyEvent e) {}
@@ -69,19 +69,19 @@ public class JavaProgramGame extends JPanel implements KeyListener {
     }
 
     public void keyReleased(KeyEvent e) {
-            if(e.getKeyCode()==KeyEvent.VK_W) {
-                cntrlUP = false;    //key Released control to up is false
-            }
-            if(e.getKeyCode()==KeyEvent.VK_S) {
-                cntrlDOWN = false;  //key Released control to down is false
-            }
-            if(e.getKeyCode()==KeyEvent.VK_UP) {
-                cntrlUP2 = false;   //key Released control to up is false
-            }
-            if(e.getKeyCode()==KeyEvent.VK_DOWN) {
-                cntrlDOWN2 = false; //key Released control to down is false
-            }
+        if(e.getKeyCode()==KeyEvent.VK_W) {
+            cntrlUP = false;    //key Released control to up is false
         }
+        if(e.getKeyCode()==KeyEvent.VK_S) {
+            cntrlDOWN = false;  //key Released control to down is false
+        }
+        if(e.getKeyCode()==KeyEvent.VK_UP) {
+            cntrlUP2 = false;   //key Released control to up is false
+        }
+        if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+            cntrlDOWN2 = false; //key Released control to down is false
+        }
+    }
 
     //Move of player 1
     public void moverPlayer1() {
@@ -124,7 +124,7 @@ public class JavaProgramGame extends JPanel implements KeyListener {
         moverPlayer2();
     }
 
-        //boolean for Ball direction
+    //boolean for Ball direction
     boolean BallIsLeftToRight = false;
     boolean BallIsUpToDown = false;
 
@@ -133,27 +133,27 @@ public class JavaProgramGame extends JPanel implements KeyListener {
         moverOfPlayer();
         Scoring();
         BallStrokes();
-            if (BallIsLeftToRight) {
-                //Ball move to right
-                pongX += right;
-                if(pongX >= (width - 8)) BallIsLeftToRight = false;
-                }
-                else {
-                //Ball move to left
-                pongX += left;
-                if(pongX <= 0) BallIsLeftToRight = true;
-            }
+        if (BallIsLeftToRight) {
+            //Ball move to right
+            pongX += right;
+            if(pongX >= (width - 8)) BallIsLeftToRight = false;
+        }
+        else {
+            //Ball move to left
+            pongX += left;
+            if(pongX <= 0) BallIsLeftToRight = true;
+        }
 
-            if(BallIsUpToDown) {
-                //Ball move to up
-                pongY += up;
-                if(pongY >= (height - 8)) BallIsUpToDown = false;
-                }
-            else {
-                //Ball move to down
-                pongY += down;
-                if(pongY <= 0) BallIsUpToDown = true;
-            }
+        if(BallIsUpToDown) {
+            //Ball move to up
+            pongY += up;
+            if(pongY >= (height - 8)) BallIsUpToDown = false;
+        }
+        else {
+            //Ball move to down
+            pongY += down;
+            if(pongY <= 0) BallIsUpToDown = true;
+        }
     }
 
     public void rendered() {
@@ -165,7 +165,7 @@ public class JavaProgramGame extends JPanel implements KeyListener {
             //Scoring of player 1 increment
             if(pongX >= (width - 8)) {
                 scorePlayer1++;
-                }
+            }
 
             //Life of player 1 decrease
             if(pongX >= (width - 8)) {
@@ -180,7 +180,7 @@ public class JavaProgramGame extends JPanel implements KeyListener {
             if(pongX == 0) {
                 life1--;
             }
-                //Setting for Game over
+            //Setting for Game over
             if (scorePlayer1 == GameOver || scorePlayer2 == GameOver) {
                 Playing = false;
                 //Game over
@@ -195,7 +195,7 @@ public class JavaProgramGame extends JPanel implements KeyListener {
             if(pongX == lineX + 10 && pongY >= lineY && pongY <= (lineY + 50)) //Player 1 ball stroke
                 BallIsLeftToRight = true;
 
-                //setting for Player 2 ball stroke
+            //setting for Player 2 ball stroke
             if(pongX == (line2X - 5) && pongY >= line2Y && pongY <= (line2Y + 50)) //player 2 ball stroke
                 BallIsLeftToRight = false;
         }
